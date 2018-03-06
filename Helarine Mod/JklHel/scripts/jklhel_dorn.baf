@@ -1,0 +1,52 @@
+/// JKLHEL: Banter accelerators
+IF
+InParty(Myself)
+InParty("JKLHEL")
+!Dead("JKLHEL")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Dorn_Banter","GLOBAL")
+Global("JKLHEL_DornBanterStarted", "GLOBAL", 1)
+
+Global("JKL_HelDornBanter1","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("JKLHEL")
+SetGlobalTimer("JKL_Helarine_Dorn_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("JKLHEL")
+!Dead("JKLHEL")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Dorn_Banter","GLOBAL")
+Global("JKLHEL_DornBanterStarted", "GLOBAL", 1)
+
+Global("JKL_HelDornBanter1","GLOBAL",1)
+Global("JKL_HelDornBanter2","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("JKLHEL")
+SetGlobalTimer("JKL_Helarine_Dorn_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("JKLHEL")
+!Dead("JKLHEL")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Dorn_Banter","GLOBAL")
+Global("JKLHEL_DornBanterStarted", "GLOBAL", 1)
+
+Global("JKL_HelDornBanter2","GLOBAL",1)
+Global("JKL_HelDornRomanceBanter1","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("JKLHEL")
+
+END

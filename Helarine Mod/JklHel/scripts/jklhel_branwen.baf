@@ -1,0 +1,36 @@
+/// JKLHEL: Banter accelerators
+IF
+InParty(Myself)
+InParty("JKLHEL")
+!Dead("JKLHEL")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Branwen_Banter","GLOBAL")
+Global("JKLHEL_BranwenBanterStarted", "GLOBAL", 1)
+
+Global("JKL_HelBranwenBanter1","GLOBAL",1)
+Global("JKL_HelBranwenBanter2B","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("JKLHEL")
+SetGlobalTimer("JKL_Helarine_Branwen_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("JKLHEL")
+!Dead("JKLHEL")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Branwen_Banter","GLOBAL")
+Global("JKLHEL_BranwenBanterStarted", "GLOBAL", 1)
+
+Global("JKL_HelBranwenBanter1","GLOBAL",1)
+Global("JKL_HelBranwenBanter2C","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("JKLHEL")
+SetGlobalTimer("JKL_Helarine_Branwen_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END

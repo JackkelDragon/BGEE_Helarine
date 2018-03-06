@@ -1,0 +1,16 @@
+/// JKLHEL: Banter accelerators
+IF
+InParty(Myself)
+InParty("JKLHEL")
+!Dead("JKLHEL")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Faldorn_Banter","GLOBAL")
+Global("JKLHEL_FaldornBanterStarted", "GLOBAL", 1)
+Global("JKL_HelFaldornBanter2","GLOBAL",1)
+Global("JKL_HelFaldornBanter3","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("JKLHEL")
+
+END

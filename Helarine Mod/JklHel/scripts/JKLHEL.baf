@@ -1,0 +1,455 @@
+// Talk to player when we're told we're ready
+IF 
+InParty(Myself)
+See(Player1)
+GlobalLT("JKL_Helarine_BG1_track","GLOBAL",9)
+Global("JKL_Helarine_ReadytoTalk","GLOBAL",1)
+!ActuallyInCombat()
+ 
+THEN
+RESPONSE #100
+Dialog(Player1)
+ 
+END
+
+// talk 4 start
+IF 
+InParty(Myself)
+See(Player1)
+GlobalGT("Chapter","GLOBAL",3) 
+Global("JKL_Helarine_BG1_story1","GLOBAL",0)
+!ActuallyInCombat()
+ 
+THEN
+RESPONSE #100
+Dialog(Player1)
+ 
+END
+
+// talk 5 start
+IF 
+InParty(Myself)
+See(Player1)
+GlobalGT("Chapter","GLOBAL",4) 
+Global("JKL_Helarine_BG1_story2","GLOBAL",0)
+!ActuallyInCombat()
+ 
+THEN
+RESPONSE #100
+Dialog(Player1)
+ 
+END
+
+// talk 6 start
+IF 
+InParty(Myself)
+See(Player1)
+GlobalGT("Chapter","GLOBAL",5) 
+Global("JKL_Helarine_BG1_story3","GLOBAL",0)
+Global("JKLHEL_BhaalReveal","GLOBAL",1)
+!ActuallyInCombat()
+ 
+THEN
+RESPONSE #100
+Dialog(Player1)
+ 
+END
+
+// Set up first conversation timer
+IF 
+InParty(Myself)
+Global("JKL_Helarine_BG1_track","GLOBAL",0)
+ 
+THEN
+RESPONSE #100
+SetGlobal("JKL_Helarine_BG1_track","GLOBAL",1)
+RealSetGlobalTimer("JKL_Helarine_BG1_track_timer","GLOBAL",1200) // 20 minutes
+ 
+END
+
+// ready for next conversation
+IF 
+InParty(Myself)
+See(Player1)
+RealGlobalTimerExpired("JKL_Helarine_BG1_track_timer","GLOBAL")
+OR(4)
+  Global("JKL_Helarine_BG1_track","GLOBAL",1)
+  Global("JKL_Helarine_BG1_track","GLOBAL",3)
+  Global("JKL_Helarine_BG1_track","GLOBAL",5)
+  Global("JKL_Helarine_BG1_track","GLOBAL",7)
+ // Global("JKL_Helarine_BG1_track","GLOBAL",9)
+ // Global("JKL_Helarine_BG1_track","GLOBAL",11)
+ 
+THEN
+RESPONSE #100
+IncrementGlobal("JKL_Helarine_BG1_track","GLOBAL",1) // next talk setup
+SetGlobal("JKL_Helarine_ReadytoTalk","GLOBAL",1)
+
+END
+
+// Setup Neera Romance Conversation 1
+IF
+InParty(Myself)
+InParty("NEERA")
+Global("JKL_Helarine_NeeraRomance_conv1","GLOBAL",0)
+GlobalGT("NEERA_ROMANCE", "GLOBAL", 1)
+
+THEN
+RESPONSE #100
+SetGlobal("JKL_Helarine_NeeraRomance_conv1","GLOBAL",1)
+SetGlobalTimer("JKL_Helarine_Special_01","GLOBAL",SEVEN_DAYS) // 5 minutes for specials
+
+END
+
+// Start Neera Romance Conversation 1
+IF
+InParty(Myself)
+InParty("NEERA")
+!Dead("NEERA")
+Global("JKL_Helarine_NeeraRomance_conv1","GLOBAL",1)
+GlobalGT("NEERA_ROMANCE", "GLOBAL", 1)
+GlobalTimerExpired("JKL_Helarine_Special_01","GLOBAL")
+!ActuallyInCombat()
+
+THEN
+RESPONSE #100
+SetGlobal("JKL_Helarine_NeeraRomance_conv1","GLOBAL",2)
+Dialog(Player1)
+
+END
+
+/// Banter accelerators
+IF
+InParty(Myself)
+InParty("FALDORN")
+!Dead("FALDORN")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Faldorn_Banter","GLOBAL")
+Global("JKLHEL_FaldornBanterStarted", "GLOBAL", 1)
+OR(2)
+	Global("JKL_HelFaldornBanter1","GLOBAL",0)
+	Global("JKL_HelFaldornBanter2","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("FALDORN")
+SetGlobalTimer("JKL_Helarine_Faldorn_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("NEERA")
+!Dead("NEERA")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Neera_Banter","GLOBAL")
+Global("JKLHEL_NeeraBanterStarted", "GLOBAL", 1)
+//OR(2)
+	Global("JKL_HelNeeraBanter1","GLOBAL",0)
+//	Global("JKL_HelNeeraRomanceBanter1","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("NEERA")
+SetGlobalTimer("JKL_Helarine_Neera_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("NEERA")
+!Dead("NEERA")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Neera_Banter","GLOBAL")
+Global("JKLHEL_NeeraBanterStarted", "GLOBAL", 1)
+
+	Global("JKL_HelNeeraBanter1","GLOBAL",1)
+	Global("JKL_HelNeeraRomanceBanter1","GLOBAL",0)
+	GlobalGT("NEERA_ROMANCE","GLOBAL",1)
+
+THEN
+RESPONSE #100
+Interact("NEERA")
+SetGlobalTimer("JKL_Helarine_Neera_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("TIAX")
+!Dead("TIAX")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Tiax_Banter","GLOBAL")
+Global("JKLHEL_TiaxBanterStarted", "GLOBAL", 1)
+OR(2)
+	Global("JKL_HelTiaxBanter1","GLOBAL",0)
+	Global("JKL_HelTiaxBanter2","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("TIAX")
+SetGlobalTimer("JKL_Helarine_Tiax_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("BRANWEN")
+!Dead("BRANWEN")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Branwen_Banter","GLOBAL")
+Global("JKLHEL_BranwenBanterStarted", "GLOBAL", 1)
+OR(2)
+	Global("JKL_HelBranwenBanter1","GLOBAL",0)
+	Global("JKL_HelBranwenBanter2A","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("BRANWEN")
+SetGlobalTimer("JKL_Helarine_Branwen_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("KIVAN")
+!Dead("KIVAN")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Kivan_Banter","GLOBAL")
+Global("JKLHEL_KivanBanterStarted", "GLOBAL", 1)
+//OR(2)
+	Global("JKL_HelKivanBanter1","GLOBAL",0)
+//	Global("JKL_HelKivanBanter2","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("KIVAN")
+SetGlobalTimer("JKL_Helarine_Kivan_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("XZAR")
+!Dead("XZAR")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Xzar_Banter","GLOBAL")
+Global("JKLHEL_XzarBanterStarted", "GLOBAL", 1)
+//OR(2)
+	Global("JKL_HelXzarBanter1","GLOBAL",0)
+//	Global("JKL_HelKivanBanter2","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("XZAR")
+SetGlobalTimer("JKL_Helarine_Xzar_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("ELDOTH")
+!Dead("ELDOTH")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Eldoth_Banter","GLOBAL")
+Global("JKLHEL_EldothBanterStarted", "GLOBAL", 1)
+//OR(2)
+	Global("JKL_HelEldothBanter1","GLOBAL",1)
+	Global("JKL_HelEldothBanter2","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("ELDOTH")
+SetGlobalTimer("JKL_Helarine_Eldoth_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("ELDOTH")
+!Dead("ELDOTH")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Eldoth_Banter","GLOBAL")
+Global("JKLHEL_EldothBanterStarted", "GLOBAL", 1)
+//OR(2)
+	Global("JKL_HelEldothBanter2","GLOBAL",1)
+	Global("JKL_HelEldothBanter3","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("ELDOTH")
+SetGlobalTimer("JKL_Helarine_Eldoth_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+IF
+InParty(Myself)
+InParty("EDWIN")
+!Dead("EDWIN")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Edwin_Banter","GLOBAL")
+Global("JKLHEL_EdwinBanterStarted", "GLOBAL", 1)
+//OR(2)
+	Global("JKL_HelEdwinBanter1","GLOBAL",0)
+//	Global("JKL_HelEldothBanter2","GLOBAL",0)
+
+THEN
+RESPONSE #100
+Interact("EDWIN")
+SetGlobalTimer("JKL_Helarine_Edwin_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
+
+// start faldorn banters
+IF
+InParty(Myself)
+InParty("FALDORN")
+!Dead("FALDORN")
+Global("JKLHEL_FaldornBanterStarted", "GLOBAL", 0)
+
+THEN
+RESPONSE #100
+SetGlobalTimer("JKL_Helarine_Faldorn_Banter","GLOBAL",TWELVE_DAYS)
+SetGlobal("JKLHEL_FaldornBanterStarted", "GLOBAL", 1)
+
+END
+
+// start alora banters
+IF
+InParty(Myself)
+InParty("ALORA")
+!Dead("ALORA")
+Global("JKLHEL_AloraBanterStarted", "GLOBAL", 0)
+
+THEN
+RESPONSE #100
+SetGlobalTimer("JKL_Helarine_Alora_Banter","GLOBAL",TEN_DAYS)
+SetGlobal("JKLHEL_AloraBanterStarted", "GLOBAL", 1)
+
+END
+
+// start neera banters
+IF
+InParty(Myself)
+InParty("NEERA")
+!Dead("NEERA")
+Global("JKLHEL_NeeraBanterStarted", "GLOBAL", 0)
+
+THEN
+RESPONSE #100
+SetGlobalTimer("JKL_Helarine_Neera_Banter","GLOBAL",ELEVEN_DAYS)
+SetGlobal("JKLHEL_NeeraBanterStarted", "GLOBAL", 1)
+
+END
+
+// start tiax banters
+IF
+InParty(Myself)
+InParty("TIAX")
+!Dead("TIAX")
+Global("JKLHEL_TiaxBanterStarted", "GLOBAL", 0)
+
+THEN
+RESPONSE #100
+SetGlobalTimer("JKL_Helarine_Tiax_Banter","GLOBAL",SEVEN_DAYS)
+SetGlobal("JKLHEL_TiaxBanterStarted", "GLOBAL", 1)
+
+END
+
+// start branwen banters
+IF
+InParty(Myself)
+InParty("BRANWEN")
+!Dead("BRANWEN")
+Global("JKLHEL_BranwenBanterStarted", "GLOBAL", 0)
+
+THEN
+RESPONSE #100
+SetGlobalTimer("JKL_Helarine_Branwen_Banter","GLOBAL",SIX_DAYS)
+SetGlobal("JKLHEL_BranwenBanterStarted", "GLOBAL", 1)
+
+END
+
+// start kivan banters
+IF
+InParty(Myself)
+InParty("KIVAN")
+!Dead("KIVAN")
+Global("JKLHEL_KivanBanterStarted", "GLOBAL", 0)
+
+THEN
+RESPONSE #100
+SetGlobalTimer("JKL_Helarine_Kivan_Banter","GLOBAL",ELEVEN_DAYS)
+SetGlobal("JKLHEL_KivanBanterStarted", "GLOBAL", 1)
+
+END
+
+// start xzar banters
+IF
+InParty(Myself)
+InParty("XZAR")
+!Dead("XZAR")
+Global("JKLHEL_XzarBanterStarted", "GLOBAL", 0)
+
+THEN
+RESPONSE #100
+SetGlobalTimer("JKL_Helarine_Xzar_Banter","GLOBAL",NINE_DAYS)
+SetGlobal("JKLHEL_XzarBanterStarted", "GLOBAL", 1)
+
+END
+
+// start xan banters
+IF
+InParty(Myself)
+InParty("XAN")
+!Dead("XAN")
+Global("JKLHEL_XanBanterStarted", "GLOBAL", 0)
+
+THEN
+RESPONSE #100
+SetGlobalTimer("JKL_Helarine_Xan_Banter","GLOBAL",FOURTEEN_DAYS)
+SetGlobal("JKLHEL_XanBanterStarted", "GLOBAL", 1)
+
+END
+
+// start eldoth banters
+IF
+InParty(Myself)
+InParty("ELDOTH")
+!Dead("ELDOTH")
+Global("JKLHEL_EldothBanterStarted", "GLOBAL", 0)
+
+THEN
+RESPONSE #100
+SetGlobalTimer("JKL_Helarine_Eldoth_Banter","GLOBAL",THIRTEEN_DAYS)
+SetGlobal("JKLHEL_EldothBanterStarted", "GLOBAL", 1)
+
+END
+
+// start edwin banters
+IF
+InParty(Myself)
+InParty("EDWIN")
+!Dead("EDWIN")
+Global("JKLHEL_EdwinBanterStarted", "GLOBAL", 0)
+
+THEN
+RESPONSE #100
+SetGlobalTimer("JKL_Helarine_Edwin_Banter","GLOBAL",ELEVEN_DAYS)
+SetGlobal("JKLHEL_EdwinBanterStarted", "GLOBAL", 1)
+
+END
+
+// start dorn banters
+IF
+InParty(Myself)
+InParty("DORN")
+!Dead("DORN")
+Global("JKLHEL_DornBanterStarted", "GLOBAL", 0)
+
+THEN
+RESPONSE #100
+SetGlobalTimer("JKL_Helarine_Dorn_Banter","GLOBAL",TEN_DAYS)
+SetGlobal("JKLHEL_DornBanterStarted", "GLOBAL", 1)
+
+END

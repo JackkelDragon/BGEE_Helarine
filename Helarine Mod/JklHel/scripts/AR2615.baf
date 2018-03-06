@@ -1,0 +1,11 @@
+IF
+ 
+Global("JKLHEL_BhaalReveal","GLOBAL",0)
+ 
+THEN
+ 
+RESPONSE #100
+ 
+SetGlobal("JKLHEL_BhaalReveal","GLOBAL",1)
+ 
+END

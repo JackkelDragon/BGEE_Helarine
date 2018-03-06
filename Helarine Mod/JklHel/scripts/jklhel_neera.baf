@@ -1,0 +1,18 @@
+/// JKLHEL: Banter accelerators
+IF
+InParty(Myself)
+InParty("JKLHEL")
+!Dead("JKLHEL")
+!ActuallyInCombat()
+GlobalTimerExpired("JKL_Helarine_Neera_Banter","GLOBAL")
+Global("JKLHEL_NeeraBanterStarted", "GLOBAL", 1)
+
+	Global("JKL_HelNeeraRomanceBanter2","GLOBAL",0)
+	Global("JKL_HelNeeraRomanceBanter1","GLOBAL",1)
+
+THEN
+RESPONSE #100
+Interact("JKLHEL")
+//SetGlobalTimer("JKL_Helarine_Neera_Banter","GLOBAL",FOURTEEN_DAYS)
+
+END
