@@ -1,6 +1,6 @@
 Helarine, Doomguide of Kelemvor NPC for BGEE/BG2EE
-BGEE: Beta v1 (hotfix)
-BG2EE: Beta v1
+- BGEE: Beta v1 (hotfix)
+- BG2EE: Beta v1
 
 By Jackkel Dragon
 
@@ -54,9 +54,9 @@ BG2EE
 
 Credits
 ----
-Jackkel Dragon (Writing and Design)
-Requiem (Doomguide Kit)
-Isandir (Custom Portrait)
-Drugar (Lore and NPC advice)
-Erg (WeiDU scripting advice)
-WhiteAngus (BGEE Bugfixes)
+- Jackkel Dragon (Writing and Design)
+- Requiem (Doomguide Kit)
+- Isandir (Custom Portrait)
+- Drugar (Lore and NPC advice)
+- Erg (WeiDU scripting advice)
+- WhiteAngus (BGEE Bugfixes)
