@@ -1,0 +1,212 @@
+BACKUP ~JklHel/backup~
+ 
+AUTHOR ~Jackkel Dragon~
+ 
+BEGIN ~Helarine for BG2EE~
+
+// stolen from requiem's kitpack
+// ---------------------------------------DPKELEMVOR----------------------------------
+
+//BEGIN ~Kelemvor~
+
+ADD_KIT ~HLKELEMVOR~
+//weapons
+~HLKELEMVOR 1 1 1 1 1 1 1 1~
+~HLKELEMVOR 0 0 0 0 1 1 0 1 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 0 0 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+
+// Min class abilities STR DEX CON INT WIS CHR
+~HLKELEMVOR          0      0      0      0    12    0~
+
+// Kit stat modifiers STR DEX CON INT WIS CHR
+~HLKELEMVOR         0     0      0      0    0      0~
+
+// Unnecessary dual class requirements for dualling to kit
+~HLKELEMVOR 0 0 0 0 17 0~
+
+// Requirements to dual to another class STR DEX CON INT WIS CHR
+~HLKELEMVOR                                       0      0      0      0    15    0~
+
+//Alignments - LG LN LE NG TN NE CG CN CE
+~HLKELEMVOR 1    1    1   0    0   0    0    0    0~
+
+// Dualcass - FT CL MA TH DR RA
+~HLKELEMVOR 1  0   1    0    0   0~
+
+// 2da
+~JklHel\kits\HEL_KELEMVOR\CLABHLKE.2da~
+~~
+
+// unusable and class
+~0x00004000 3~
+
+// high level abilities
+~Cl0~
+
+//equipment
+~CHAN09 * HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
+
+// description
+SAY ~Doomguide~
+SAY ~Doomguide Of Kelemvor~
+SAY ~DOOMGUIDE OF KELEMVOR: Fair yet cold, Kelemvor is the god of death and the dead, he promotes death as a natural part of existence, something to be embraced and not feared, as such his clergy are often charged with arranging funerals and rites for the recently deceased.
+
+Advantages:
+
+- Gains domain spells relevant to the portfolio of the deity:
+- 1st Level: Chill Touch
+- 4th Level: Hold Undead
+- 7th Level: Emotion: Hopelessness
+- 10th Level: Raise Dead
+- 13th Level: Bolt of Glory
+
+Disadvantages:
+- None
+~
+
+//-------------------------DOMAIN SPELLS-------------------------------------------
+
+COPY ~JklHel\kits\HEL_KELEMVOR\SPHLKEL1.spl~ ~override\SPHLKEL1.spl~
+SAY NAME1 ~Chill Touch~
+COPY ~JklHel\kits\HEL_KELEMVOR\SPHLKEL2.spl~ ~override\SPHLKEL2.spl~
+SAY NAME1 ~Hold Undead~
+COPY ~JklHel\kits\HEL_KELEMVOR\SPHLKEL3.spl~ ~override\SPHLKEL3.spl~
+SAY NAME1 ~Emotion: Hopelessness~
+COPY ~JklHel\kits\HEL_KELEMVOR\SPHLKEL4.spl~ ~override\SPHLKEL4.spl~
+SAY NAME1 ~Raise Dead~
+COPY ~JklHel\kits\HEL_KELEMVOR\SPHLKEL5.spl~ ~override\SPHLKEL5.spl~
+SAY NAME1 ~Bolt of Glory~
+
+//--------------------------SYMBOL, SPELL-ITEM-BAM-----------------------------
+
+//COPY ~JklHel\kits\DPKELEMVOR\SPDPKEL6.spl~ ~override\SPDPKEL6.spl~
+//SAY NAME1 ~Holy Symbol of Kelemvor~
+//COPY ~JklHel\kits\DPKELEMVOR\DPSYKELE.bam~ ~override\DPSYKELE.bam~
+//COPY ~JklHel\kits\DPKELEMVOR\DPSYKELE.itm~ ~override\DPSYKELE.itm~   
+//SAY NAME2 ~Holy Symbol of Kelemvor~
+//SAY DESC ~Holy Symbol of Kelemvor
+
+//This symbol sets apart those distinguished Doomguides whose unending work was helped to bring justice to the dead and the dying, and helps to protect these followers from meeting an untimely demise.
+
+//STATISTICS:
+
+// +1 Strength
+// +5% magic resistance
+// Grants an additional 6th and 7th level spell
+// Under the effects of the Death Ward spell while equipped
+//~
+
+
+//----------------------------HIGH LEVEL ABILITIES------------------------------------
+
+COPY ~JklHel\kits\HEL_KELEMVOR\luhlke.2da~ ~override\LUHLKE.2da~
+
+//--------------------------------------------------------------------------------------------------------
+ 
+// This adds our CRE file
+ 
+COPY ~JklHel/portrait/JKLHELL.bmp~ ~override/JKLHELL.bmp~
+COPY ~JklHel/portrait/JKLHELM.bmp~ ~override/JKLHELM.bmp~
+COPY ~JklHel/portrait/JKLHELS.bmp~ ~override/JKLHELS.bmp~
+
+COPY ~JklHel/creatures/JKLHEL.cre~ ~override/JKLHEL.cre~
+ 
+/* This allows for your NPC's name to be shown in the game during conversations and also on the character sheet*/
+ 
+SAY NAME1 ~Helarine~
+ 
+SAY NAME2 ~Helarine~
+
+// Kit stuff
+WRITE_SHORT 0x244 0 // doesn't change  
+WRITE_BYTE  0x246 ~%HLKELEMVOR%~ // the internal name of your kit, surrounded by %  
+WRITE_BYTE  0x247 0x40 // doesn't change
+ 
+/* This is the biography. In NearInfinity, go to that side tab and find CHR. Open that and find Sam.BIO You can create your own bio this way by simply deleting the default PC bio and typing your own. Save this.*/
+ 
+SAY BIO ~When asked about her past, Helarine becomes quiet for a moment, tensing up and shutting her eyes. She explains that she was the daughter of priests of Bhaal, adeity that perished during the Time of Troubles. After the death of her god and her parents, she went through a period of faithlessness and rage. A few years ago, she rededicated herself to the newly ascended God of Death, Kelemvor. She says she had to go through a significant change of personality to properly embrace Kelemvor's teachings, and sometimes her old lessons are difficult to unlearn. After telling her tale, she becomes formal and aloof, refusing to answer further questions. That time has passed, she reasons; it must stay in thepast for her to move on.~
+ 
+/* These are the different things that your NPC will say when they respond to your commands.*/
+ 
+SAY MORALE ~This fight is going poorly...~
+ 
+SAY UNHAPPY_SERIOUS ~Though my heart wishes to stay, Kelemvor may force my hand.~
+ 
+SAY UNHAPPY_BREAKING ~I apologize... my duty to Kelemvor comes first.~
+ 
+SAY LEADER ~If the company requires my leadership.~
+ 
+SAY TIRED ~We shouldn't continue until everyone is fully rested.~
+ 
+SAY BATTLE_CRY1 ~Don't cross me!~
+ 
+SAY BATTLE_CRY2 ~I won't hold back!~
+ 
+SAY BATTLE_CRY3 ~Your soul has lingered on this realm for too long!~
+ 
+SAY DAMAGE ~Ugh!~
+ 
+SAY DYING ~Kelemvor... guide me...~
+ 
+SAY HURT ~I can't keep this up much longer...~
+ 
+SAY SELECT_COMMON1 ~At your service.~
+ 
+SAY SELECT_COMMON2 ~I'm here.~
+ 
+SAY SELECT_COMMON3 ~Anything troubling you?~
+ 
+SAY SELECT_COMMON4 ~Your orders?~
+ 
+SAY SELECT_ACTION1 ~As you wish.~
+ 
+SAY SELECT_ACTION2 ~I'll get right to it.~
+ 
+SAY SELECT_ACTION3 ~That should be simple enough.~
+
+SAY SELECT_RARE1 ~I live to serve.~
+ 
+SAY CRITICAL_HIT ~That looked painful...~
+ 
+SAY CRITICAL_MISS ~I shouldn't fumble like this...~
+ 
+SAY TARGET_IMMUNE ~I need a different weapon.~
+ 
+SAY INVENTORY_FULL ~I... don't think I can carry this all.~
+ 
+// This is compiling Sam's dialogue
+ 
+COMPILE ~JklHel/dialogue/jkl_hel_main.d~
+
+//COMPILE ~JklHel/dialogue/jkl_hel_gabber.d~
+
+COMPILE ~JklHel/dialogue/jkl_hel_partyactions.d~
+
+COMPILE ~JklHel/dialogue/jkl_hel_banter.d~
+
+COMPILE ~JklHel/dialogue/jkl_hel_romreact.d~
+
+COMPILE ~JklHel/scripts/JKLHEL.baf~
+ 
+// This is adding our area file to the game
+ 
+// EXTEND_TOP ~AR0800.bcs~ ~JklHel/scripts/AR0800.baf~
+
+// extend NPC scripts for banter accelerators
+
+// EXTEND_BOTTOM ~FALDORN.bcs~ ~JklHel/scripts/jklhel_faldorn.baf~
+
+// attach scripts to those with none assigned
+
+/* Add this to the end (Appends .2DA files in the game so that it recognizes your NPC's files*/
+ 
+APPEND ~pdialog.2da~
+ 
+~JKLHEL	JKLHELP	JKLHELJ~
+ 
+UNLESS ~JKLHEL~
+ 
+APPEND ~interdia.2da~
+ 
+~JKLHEL BJKLHEL~
+ 
+UNLESS ~JKLHEL~
