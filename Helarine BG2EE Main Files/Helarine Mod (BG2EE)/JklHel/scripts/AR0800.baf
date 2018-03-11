@@ -1,0 +1,13 @@
+IF
+ 
+Global("JKLHELExists","AR0800",0)
+ 
+THEN
+ 
+RESPONSE #100
+ 
+SetGlobal("JKLHELExists","AR0800",1)
+ 
+CreateCreature("JKLHEL",[1782.1482],3)
+ 
+END
