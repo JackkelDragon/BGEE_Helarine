@@ -189,7 +189,7 @@ COMPILE ~JklHel/scripts/JKLHEL.baf~
  
 // This is adding our area file to the game
  
-// EXTEND_TOP ~AR0800.bcs~ ~JklHel/scripts/AR0800.baf~
+EXTEND_TOP ~AR0800.bcs~ ~JklHel/scripts/AR0800.baf~
 
 // extend NPC scripts for banter accelerators
 
