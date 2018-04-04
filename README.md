@@ -19,8 +19,10 @@ Installation
 Features
 ----
 - Helarine, the Doomguide of Kelemvor NPC Cleric 
+
 (BGEE: Found in the Friendly Arm Inn, within the walls but outside of the inn. [AR2300])
-(BG2EE: Found in the Athkatla Graveyard. [AR0800])
+
+(BG2EE: Found in the Athkatla Graveyard, by graves near the south entrance. [AR0800])
 
 BGEE
 - Four-conversation friendship track.
@@ -32,7 +34,7 @@ BG2EE
 
 Known Bugs
 ----
-- BG2EE: Helarine isn't spawned by the game; must be spawned via the console.
+- BG2EE: (ToB) Helarine uses her SoA recruitment dialogue when summoned by the Fate Spirit.
 
 Reporting Bugs
 ----
